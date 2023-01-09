@@ -1,18 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project with tailwind and typescript installed and all set up!
+# Cut Strings Into Several Parts
 
-I recently started learning Next and tailwind but all the templates I would find had lots of dependencies
-that I was not using. So I created this.
+This was created solely for the purpose of dividing a long string (**newline delimited**)
+Into several parts that are up to 10k characters. Why? To prepare summaries
+of long videos. Especially useful for course vids.
 
-## Getting Started
+Optimized so that **you won't go over the token limit** of ChatGPT
 
-Run the development server with:
+### Usage
 
-```bash
-npm run dev
-```
-
-Then visit [http://localhost:300](http://localhost:3000)
-
-## Next Steps
-
-The only thing remaining is to have fun!
+- Copy the transcript of a video or any newline delimited text
+- Paste it into the app
