@@ -54,32 +54,27 @@ const Home: NextPage = () => {
   }, [lines, isTooShort]);
 
   return (
-    <>
-      <Head>
-        <title>tailwind starter template</title>
-      </Head>
-      <main className="flex flex-1 flex-col items-center justify-center bg-slate-900 text-white ">
-        <header className="prose-lg text-center mb-4 text-zinc-200">
-          <h1 className="text-4xl font-bold ">Paste any long text</h1>
-          <p className="prose-p">
-            Make sure that your text is <strong>newline</strong> delimited
-          </p>
-        </header>
-        <div className="">
-          <textarea
-            readOnly
-            className="flex h-[400px] max-h-[800px] max-w-[2000px] items-center justify-center rounded-lg border-2 border-gray-600 bg-slate-700 p-4 text-lg duration-200 ease-in-out hover:border-slate-300 hover:transition-all"
-            cols={50}
-            rows={100}
-            value={
-              isTooShort
-                ? "Your text is too short"
-                : separatedLines.join("\n") ?? "There was a problem lol"
-            }
-          ></textarea>
-        </div>
-      </main>
-    </>
+    <main className="flex flex-1 flex-col items-center justify-center bg-slate-900 px-4 text-white">
+      <header className="prose-lg mb-4 text-center text-zinc-200">
+        <h1 className="text-4xl font-bold ">Paste any long text</h1>
+        <p>
+          Make sure that your text is <strong>newline</strong> delimited
+        </p>
+      </header>
+      <div className="flex items-center justify-center">
+        <textarea
+          className="h-[400px] max-h-screen w-[300px] max-w-full resize rounded-lg border-2 border-gray-600 bg-slate-700 p-4 text-lg transition-colors duration-200 ease-in-out hover:border-slate-300 sm:w-[500px] lg:h-[600px] lg:w-[800px]"
+          // rows={25}
+          // cols={50}
+          value={
+            isTooShort
+              ? "Your text is too short"
+              : separatedLines.join("\n") ?? "There was a problem lol"
+          }
+          onChange={(e) => e.preventDefault()}
+        ></textarea>
+      </div>
+    </main>
   );
 };
 
