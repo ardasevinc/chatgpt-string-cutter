@@ -10,3 +10,9 @@ Optimized so that **you won't go over the token limit** of ChatGPT
 
 - Copy the transcript of a video or any newline delimited text
 - Paste it into the app
+
+## Development
+
+- clone the repo
+- run the dev server with `pnpm dev`
+- have fun
