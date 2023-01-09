@@ -56,7 +56,7 @@ const Home: NextPage = () => {
         <div className="">
           <textarea
             readOnly
-            className="text-lg w-[700px] h-[800px] flex justify-center items-center border-2 border-gray-600 hover:border-slate-300 transition-all duration-300 ease-in-out rounded-lg bg-slate-700 overflow-scroll p-4"
+            className="flex h-[800px] w-[700px] items-center justify-center overflow-scroll rounded-lg border-2 border-gray-600 bg-slate-700 p-4 text-lg transition-all duration-300 ease-in-out hover:border-slate-300"
             cols={50}
             rows={100}
             value={
