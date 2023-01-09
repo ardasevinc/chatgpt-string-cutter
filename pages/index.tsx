@@ -7,22 +7,28 @@ const Home: NextPage = () => {
   const [text, setText] = useState<string | null>(null);
   const [lines, setLines] = useState<string[]>([]);
   const [separatedLines, setSeparatedLines] = useState<string[]>([]);
+  const [isTooShort, setIsTooShort] = useState<boolean>(false);
 
   const handleClipboardText = (text: string | null) => {
     setText(text);
-    // console.table({ text });
+    if (text && text.length < 10000) {
+      setIsTooShort(true);
+    } else {
+      setIsTooShort(false);
+    }
+    console.table({ text });
   };
   const {} = usePaste(handleClipboardText);
 
   useEffect(() => {
-    if (text) {
+    if (text && !isTooShort) {
       const splitLines = text.split(/\r?\n/);
       setLines(splitLines);
     }
-  }, [text]);
+  }, [text, isTooShort]);
 
   useEffect(() => {
-    if (lines.length > 0) {
+    if (lines.length > 0 && !isTooShort) {
       const lineCount = lines.length;
 
       let separatedLines = [];
@@ -45,7 +51,7 @@ const Home: NextPage = () => {
       const flattened = separatedLines.flat();
       setSeparatedLines(flattened);
     }
-  }, [lines]);
+  }, [lines, isTooShort]);
 
   return (
     <>
@@ -53,16 +59,22 @@ const Home: NextPage = () => {
         <title>tailwind starter template</title>
       </Head>
       <main className="flex flex-1 flex-col items-center justify-center bg-slate-900 text-white ">
+        <header className="prose-lg text-center mb-4 text-zinc-200">
+          <h1 className="text-4xl font-bold ">Paste any long text</h1>
+          <p className="prose-p">
+            Make sure that your text is <strong>newline</strong> delimited
+          </p>
+        </header>
         <div className="">
           <textarea
             readOnly
-            className="flex h-[800px] w-[700px] items-center justify-center overflow-scroll rounded-lg border-2 border-gray-600 bg-slate-700 p-4 text-lg transition-all duration-300 ease-in-out hover:border-slate-300"
+            className="flex h-[400px] max-h-[800px] max-w-[2000px] items-center justify-center rounded-lg border-2 border-gray-600 bg-slate-700 p-4 text-lg duration-200 ease-in-out hover:border-slate-300 hover:transition-all"
             cols={50}
             rows={100}
             value={
-              separatedLines.join("\n") ??
-              "There was a problem lol" ??
-              "Paste something here"
+              isTooShort
+                ? "Your text is too short"
+                : separatedLines.join("\n") ?? "There was a problem lol"
             }
           ></textarea>
         </div>
